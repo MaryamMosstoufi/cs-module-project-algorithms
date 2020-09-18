@@ -6,10 +6,13 @@ Returns: a List of integers
 
 def sliding_window_max(nums, k):
     # Your code here
-    result = [0] * (len(nums)-k+1)
+    result = [' '] * (len(nums)-k+1)
     for i in range(0, len(result)):
-        for j in range(1, k):
-            result[i] += nums[i + k]
+        for j in range(0, k):
+            if result[i] == ' ':
+                result[i] = nums[i + j]
+            elif nums[i + j] > result[i]:
+                result[i] = nums[i + j]
     return result
 
 
