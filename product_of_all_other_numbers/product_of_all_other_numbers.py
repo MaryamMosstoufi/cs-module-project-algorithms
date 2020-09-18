@@ -6,18 +6,29 @@ Returns: a List of integers
 
 def product_of_all_other_numbers(arr):
 
-    # with division solution:
-    # product = 1
-    # for i in arr:
-    #     if i != 0:
-    #         product *= i
-    # for i in range(0, len(arr)):
-    #     if arr[i] == 0:
-    #         arr[i] = product
-    #     else:
-    #         temp = arr[i]
-    #         arr[i] = product // temp
-    # return arr
+    # with zero solution:
+    product = 1
+    if arr.count(0) == 0:
+        for i in arr:
+            product *= i
+        for i in range(0, len(arr)):
+            temp = arr[i]
+            arr[i] = product // temp
+        return arr
+    elif arr.count(0) == 1:
+        for i in range(0, len(arr)):
+            if arr[i] == 0:
+                arr[i] = 1
+                zero = i
+            product *= arr[i]
+        for i in range(0, len(arr)):
+            if i == zero:
+                arr[i] = product
+            else:
+                arr[i] = 0
+        return arr
+    elif arr.count(0) > 1:
+        return[0]*len(arr)
 
 
 if __name__ == '__main__':
